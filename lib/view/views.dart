@@ -8,6 +8,14 @@ export 'settings.dart';
 export 'settings_view/theme.dart';
 export 'settings_view/appearance.dart';
 
+Color colorScheme(BuildContext context) {
+  return Theme.of(context).brightness == Brightness.dark
+      ? Theme.of(context).colorScheme.surfaceContainerLow
+      : Theme.of(context).colorScheme.surfaceContainerHigh;
+}
+
+bool isDark(context) => Theme.of(context).brightness == Brightness.dark;
+
 enum SettingList {
   theme(
     title: "Theme",

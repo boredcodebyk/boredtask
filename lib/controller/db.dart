@@ -43,7 +43,7 @@ class DBhelper {
                   due TEXT, 
                   done INTEGER,
                   pin INTEGER,
-                  trash INTEGER,
+                  trash INTEGER
                 )
               """);
           await txn.execute("""
@@ -88,4 +88,12 @@ class DBhelper {
     return await db.update(tasksTable, task.toJson(),
         where: 'id = ?', whereArgs: [task.id]);
   }
+
+  // Future<Task> fetchSingleTask(String id) async {
+  //   final db = await instance.database;
+  //   final rawList =
+  //       await db.query(tasksTable, where: 'id = ?', whereArgs: [id]);
+  //   var list = rawList.map((e) => Task.fromJson(e)).toList();
+  //   return list.first;
+  // }
 }

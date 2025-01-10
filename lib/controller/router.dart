@@ -7,6 +7,7 @@ import '../view/views.dart';
 final routerProvider = Provider<GoRouter>((ref) {
   final router = GoRouter(
     initialLocation: '/',
+    debugLogDiagnostics: true,
     routes: [
       GoRoute(
         path: '/',

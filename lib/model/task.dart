@@ -10,6 +10,8 @@ class Task {
   List<String> projectTags;
   DateTime? due;
   bool done;
+  bool pin;
+  bool trash;
 
   Task({
     required this.id,
@@ -21,19 +23,22 @@ class Task {
     required this.projectTags,
     this.due,
     required this.done,
+    this.pin = false,
+    this.trash = false,
   });
 
-  Task copyWith({
-    String? id,
-    String? task,
-    DateTime? dateCreated,
-    DateTime? dateModified,
-    int? priority,
-    List<String>? contextTags,
-    List<String>? projectTags,
-    DateTime? due,
-    bool? done,
-  }) =>
+  Task copyWith(
+          {String? id,
+          String? task,
+          DateTime? dateCreated,
+          DateTime? dateModified,
+          int? priority,
+          List<String>? contextTags,
+          List<String>? projectTags,
+          DateTime? due,
+          bool? done,
+          bool? pin,
+          bool? trash}) =>
       Task(
         id: id ?? this.id,
         task: task ?? this.task,
@@ -44,6 +49,8 @@ class Task {
         projectTags: projectTags ?? this.projectTags,
         due: due ?? this.due,
         done: done ?? this.done,
+        pin: pin ?? this.pin,
+        trash: trash ?? this.trash,
       );
 
   factory Task.fromRawJson(String str) => Task.fromJson(json.decode(str));
@@ -74,6 +81,8 @@ class Task {
             : <String>[],
         due: json["due"] != null ? DateTime.tryParse(json["due"]) : null,
         done: json["done"] == 1,
+        pin: json["pin"] == 1,
+        trash: json["trash"] == 1,
       );
 
   Map<String, dynamic> toJson() => {
@@ -86,5 +95,7 @@ class Task {
         "projectTags": projectTags.join(","),
         "due": due?.toIso8601String(),
         "done": done ? 1 : 0,
+        "pin": pin ? 1 : 0,
+        "trash": trash ? 1 : 0,
       };
 }

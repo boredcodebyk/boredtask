@@ -16,7 +16,7 @@ class TaskListNotifier extends AutoDisposeAsyncNotifier<List<Task>> {
     return list;
   }
 
-  Future<void> toggle(Task task) async {
+  Future<void> updateTask(Task task) async {
     final dbHelper = DBhelper.instance;
     state = await AsyncValue.guard(() async {
       await dbHelper.updateTask(task);
@@ -31,6 +31,11 @@ class TaskListNotifier extends AutoDisposeAsyncNotifier<List<Task>> {
       return fetch();
     });
   }
+
+  // Future<Task> fetchSingleTask(String id) async {
+  //   final dbHelper = DBhelper.instance;
+  //   return await dbHelper.fetchSingleTask(id);
+  // }
 }
 
 final taskListProvider =
